@@ -77,10 +77,10 @@ const Demo = () => {
 
   return (
     <Wizzard state={state} onChange={setState} defaultStage="2">
-      <Wizzard.Stage stage="1">
+      <Wizzard.Stage stage="1" onEnter={() => alert("Entering Stage 1")}>
         <Stage1Component />
       </Wizzard.Stage>
-      <Wizzard.Stage stage="2">
+      <Wizzard.Stage stage="2" onLeave={() => alert("Leaving Stage 2")}>
         <Stage2Component />
       </Wizzard.Stage>
       <Wizzard.Stage stage="3">
