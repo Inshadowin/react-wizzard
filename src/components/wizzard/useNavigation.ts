@@ -8,7 +8,7 @@ export const useNavigation = (
 
   const nextStage =
     currStageIndex !== lastStageIndex ? stages?.[currStageIndex + 1] : null;
-  const prevStage = currStageIndex !== 0 ? stages?.[currStageIndex - 1] : null;
+  const prevStage = currStageIndex > 0 ? stages?.[currStageIndex - 1] : null;
 
   const handleGoNext = nextStage !== null ? () => setStage?.(nextStage) : null;
   const handleGoBack = prevStage !== null ? () => setStage?.(prevStage) : null;
