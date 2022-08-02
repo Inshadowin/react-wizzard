@@ -5,6 +5,7 @@ Lightweight React-Wizzard package
 Serves purpose of control over stages and `onEnter` / `onLeave` events
 
 Component is stateless, you need to provide state / onChange on your own
+
 It's enough to have `[state, onChange] = useState({})` as there are no additional logic there
 
 ## Documenation
