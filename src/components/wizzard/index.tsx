@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Stage from "./Stage";
-import { useNavigation } from "./useNavigation";
+import Stage from './Stage';
+import { useNavigation } from './useNavigation';
+import type { WizzardType } from '../../types';
 
 const Wizzard: WizzardType = ({ children, state, onChange, defaultStage }) => {
   const stages = React.Children.map(children, c => c.props.stage);

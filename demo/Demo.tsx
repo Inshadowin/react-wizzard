@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-import { Wizzard } from "../src/components";
+import { Wizzard } from '../src/components';
+import type { StageChildrenProps } from '../src';
 
 type StateType = {
   text1?: string;
@@ -70,17 +71,17 @@ const Stage3Component = ({
 
 const Demo = () => {
   const [state, setState] = useState<StateType>({
-    text1: "",
-    text2: "",
-    text3: "",
+    text1: '',
+    text2: '',
+    text3: '',
   });
 
   return (
     <Wizzard state={state} onChange={setState} defaultStage="2">
-      <Wizzard.Stage stage="1" onEnter={() => alert("Entering Stage 1")}>
+      <Wizzard.Stage stage="1" onEnter={() => alert('Entering Stage 1')}>
         <Stage1Component />
       </Wizzard.Stage>
-      <Wizzard.Stage stage="2" onLeave={() => alert("Leaving Stage 2")}>
+      <Wizzard.Stage stage="2" onLeave={() => alert('Leaving Stage 2')}>
         <Stage2Component />
       </Wizzard.Stage>
       <Wizzard.Stage stage="3">

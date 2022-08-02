@@ -8,6 +8,6 @@
     "allowJs": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*", "demo"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "node_modules/", "node_modules/**/*"]
 }

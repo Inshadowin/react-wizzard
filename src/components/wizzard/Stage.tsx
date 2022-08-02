@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { useStageLifecycle } from "./useStageLifecycle";
+import { useStageLifecycle } from './useStageLifecycle';
+import type { WizzardStageType } from '../../types';
 
 const Stage: WizzardStageType = ({
   children,

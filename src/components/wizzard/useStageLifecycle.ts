@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
+
+import type { WizzardStageProps } from '../../types';
 
 export const useStageLifecycle = <T>({
   state,
@@ -7,7 +9,7 @@ export const useStageLifecycle = <T>({
   onLeave,
 }: Pick<
   WizzardStageProps<T>,
-  "state" | "onChange" | "onEnter" | "onLeave"
+  'state' | 'onChange' | 'onEnter' | 'onLeave'
 >) => {
   const stateRef = useRef<{
     state: typeof state;
