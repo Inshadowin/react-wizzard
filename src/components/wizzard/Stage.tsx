@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useStageLifecycle } from './useStageLifecycle';
-import type { WizzardStageType } from '../../types';
+import type { CompoziteWizzardStageType } from '../../types';
 
-const Stage: WizzardStageType = ({
+const Stage: CompoziteWizzardStageType = ({
   children,
   state,
   onChange,
