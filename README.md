@@ -62,10 +62,12 @@ type StageChildrenProps<T> = {
   // Stage ID for Wizzard stage
   stage?: string,
 
-  // Effect that takes place on stage enter. Second argument allows to consume change function, and do on-enter data change
+  // Effect that takes place on stage enter.
+  // Second argument allows to consume change function, and do on-enter data change
   onEnter?: (state?: T, onChange?: (newState: T) => void) => void,
 
-  // Effect that takes place on stage leave. Second argument allows to consume change function, and do on-leave data change
+  // Effect that takes place on stage leave.
+  // Second argument allows to consume change function, and do on-leave data change
   onLeave?: (state?: T, onChange?: (newState: T) => void) => void,
 
   // Must contain element based on Component with StageChildrenProps consumption
