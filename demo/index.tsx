@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Wizzard } from "../components";
+import { Wizzard } from "../src/components";
 
 type StateType = {
   text1?: string;
