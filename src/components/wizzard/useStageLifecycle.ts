@@ -1,16 +1,18 @@
 import { useEffect, useRef } from 'react';
 
-import type { CompoziteWizzardStageProps } from '../../types';
+import type { WizzardProps, WizzardStageProps } from '../../types';
+
+type UseStageLifecycleParams<T> = Pick<
+  WizzardStageProps<T> & WizzardProps<T>,
+  'state' | 'onChange' | 'onEnter' | 'onLeave'
+>;
 
 export const useStageLifecycle = <T>({
   state,
   onChange,
   onEnter,
   onLeave,
-}: Pick<
-  CompoziteWizzardStageProps<T>,
-  'state' | 'onChange' | 'onEnter' | 'onLeave'
->) => {
+}: UseStageLifecycleParams<T>) => {
   const stateRef = useRef<{
     state: typeof state;
     onChange: typeof onChange;

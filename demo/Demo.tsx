@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Wizzard } from '../src/components';
-import type { StageChildrenProps } from '../src';
+import type { WizzardStageChildrenProps } from '../src';
 
 type StateType = {
   text1?: string;
@@ -15,7 +15,7 @@ const Stage1Component = ({
   stage,
   goNext,
   goBack,
-}: StageChildrenProps<StateType>) => {
+}: WizzardStageChildrenProps<StateType>) => {
   return (
     <>
       Stage #{stage}
@@ -35,7 +35,7 @@ const Stage2Component = ({
   stage,
   goNext,
   goBack,
-}: StageChildrenProps<StateType>) => {
+}: WizzardStageChildrenProps<StateType>) => {
   return (
     <>
       Stage #{stage}
@@ -55,7 +55,7 @@ const Stage3Component = ({
   stage,
   goNext,
   goBack,
-}: StageChildrenProps<StateType>) => {
+}: WizzardStageChildrenProps<StateType>) => {
   return (
     <>
       Stage #{stage}
@@ -78,6 +78,9 @@ const Demo = () => {
 
   return (
     <Wizzard state={state} onChange={setState} defaultStage="2">
+      <Wizzard.Consumer>
+        {params => <div>Stage from Consumer# {params.stage}</div>}
+      </Wizzard.Consumer>
       <Wizzard.Stage stage="1" onEnter={() => alert('Entering Stage 1')}>
         <Stage1Component />
       </Wizzard.Stage>
@@ -87,6 +90,10 @@ const Demo = () => {
       <Wizzard.Stage stage="3">
         <Stage3Component />
       </Wizzard.Stage>
+      <Wizzard.Stage<StateType> stage="4">
+        {props => <Stage3Component {...props} />}
+      </Wizzard.Stage>
+      <div>Can't render this</div>
     </Wizzard>
   );
 };

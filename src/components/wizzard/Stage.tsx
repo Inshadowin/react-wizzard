@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { useStageLifecycle } from './useStageLifecycle';
-import type { CompoziteWizzardStageType } from '../../types';
+import type { WizzardStageProps, WizzardStageChildrenProps } from '../../types';
 
-const Stage: CompoziteWizzardStageType = ({
+type StageProps<T> = WizzardStageProps<T> & WizzardStageChildrenProps<T>;
+
+const Stage = <T,>({
   children,
   state,
   onChange,
@@ -13,7 +15,7 @@ const Stage: CompoziteWizzardStageType = ({
   onLeave,
   goBack,
   goNext,
-}) => {
+}: StageProps<T>) => {
   useStageLifecycle({
     state,
     onChange,
