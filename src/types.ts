@@ -32,7 +32,7 @@ export type WizzardConsumerType = <T>(
   props: WizzardConsumerProps<T>
 ) => JSX.Element;
 
-type WizzardChild<T> =
+export type WizzardChild<T> =
   | React.ReactElement<WizzardConsumerProps<T>>
   | React.ReactElement<WizzardStageProps<T>>;
 

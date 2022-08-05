@@ -12,5 +12,5 @@ export const renderChild = (
     return React.cloneElement(child, props);
   }
 
-  return null;
+  return child as JSX.Element;
 };

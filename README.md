@@ -10,7 +10,7 @@ It's enough to have `[state, onChange] = useState({})` as there are no additiona
 
 ## Documenation
 
-- `Wizzard` component. Core component that accepts children of `Wizzard.Stage` type
+- `Wizzard` component. Core component that accepts children of `Wizzard.Stage` and `Wizzard.Consumer` type
 
 `<Wizzard />` Props:
 
@@ -18,23 +18,34 @@ It's enough to have `[state, onChange] = useState({})` as there are no additiona
 //
 // Types:
 //
+
+type WizzardChild<T> =
+  | React.ReactElement<WizzardConsumerProps<T>>
+  | React.ReactElement<WizzardStageProps<T>>;
+
 type WizzardProps<T> = {
   defaultStage?: string,
   state: T,
   onChange: (newState: T) => void,
-  children:
-    | React.ReactElement<WizzardStageProps<T>>
-    | React.ReactElement<WizzardStageProps<T>>[],
+  children: WizzardChild<T> | WizzardChild<T>[],
 };
 
 type WizzardStageProps<T> = {
   stage: string,
   onEnter?: (state?: T, onChange?: (newState: T) => void) => void,
   onLeave?: (state?: T, onChange?: (newState: T) => void) => void,
-  children: React.ReactElement<StageChildrenProps<T>>,
+  children:
+    | React.ReactElement<WizzardStageChildrenProps<T>>
+    | ((params: WizzardStageChildrenProps<T>) => JSX.Element),
 } ;
 
-type StageChildrenProps<T> = {
+type WizzardConsumerProps<T> = {
+  children:
+    | React.ReactElement<WizzardStageChildrenProps<T>>
+    | ((params: WizzardStageChildrenProps<T>) => JSX.Element),
+};
+
+type WizzardStageChildrenProps<T> = {
   state?: T,
   onChange?: (newState: T) => void,
   stage?: string,
@@ -58,7 +69,16 @@ type StageChildrenProps<T> = {
   onChange: (newState: T) => void
 
   // Components that define stages
-  children: <Wizzard.Stage /> // element
+  children: <Wizzard.Stage /> || <Wizzard.Consumer /> // element
+}
+
+//  WizzardConsumer
+{
+  // Must contain element based on Component with WizzardStageChildrenProps consumption
+  // or render function
+  children:
+    | React.ReactElement<WizzardStageChildrenProps<T>>
+    | ((params: WizzardStageChildrenProps<T>) => JSX.Element)
 }
 
 // WizzardStage
@@ -74,11 +94,14 @@ type StageChildrenProps<T> = {
   // Second argument allows to consume change function, and do on-leave data change
   onLeave?: (state?: T, onChange?: (newState: T) => void) => void,
 
-  // Must contain element based on Component with StageChildrenProps consumption
-  children: React.ReactElement<StageChildrenProps<T>>,
+  // Must contain element based on Component with WizzardStageChildrenProps consumption
+  // or render function
+  children:
+    | React.ReactElement<WizzardStageChildrenProps<T>>
+    | ((params: WizzardStageChildrenProps<T>) => JSX.Element)
 }
 
-// StageChildrenProps
+// WizzardStageChildrenProps
 {
   // Access to Wizzard state
   state?: T,
@@ -141,6 +164,9 @@ const OurWizzardExample = () => {
 
   return (
     <Wizzard state={state} onChange={setState} defaultStage="2">
+      <Wizzard.Consumer>
+        {params => <div>Stage from Consumer# {params.stage}</div>}
+      </Wizzard.Consumer>
       <Wizzard.Stage stage="1" onEnter={() => alert('Entering Stage 1')}>
         <Stage1Component />
       </Wizzard.Stage>
@@ -149,6 +175,9 @@ const OurWizzardExample = () => {
       </Wizzard.Stage>
       <Wizzard.Stage stage="3">
         <Stage3Component />
+      </Wizzard.Stage>
+      <Wizzard.Stage stage="4">
+        {props => <div>Just a custom render</div>}
       </Wizzard.Stage>
     </Wizzard>
   );

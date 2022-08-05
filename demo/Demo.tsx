@@ -93,7 +93,7 @@ const Demo = () => {
       <Wizzard.Stage<StateType> stage="4">
         {props => <Stage3Component {...props} />}
       </Wizzard.Stage>
-      <div>Can't render this</div>
+      <div>Can render this</div>
     </Wizzard>
   );
 };

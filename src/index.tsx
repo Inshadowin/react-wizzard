@@ -4,5 +4,7 @@ export type {
   WizzardProps,
   WizzardStageType,
   WizzardStageProps,
+  WizzardConsumerType,
+  WizzardConsumerProps,
   WizzardStageChildrenProps,
 } from './types';
