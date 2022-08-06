@@ -1,6 +1,6 @@
 {
   "name": "react-wizzard-light",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This is a package with react-wizzard",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
