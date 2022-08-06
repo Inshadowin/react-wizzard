@@ -32,12 +32,7 @@ const Wizzard: WizzardType = ({ children, state, onChange, defaultStage }) => {
       goNext,
     };
 
-    if (c?.type !== Wizzard.Stage) {
-      return renderChild(c, injectProps);
-    }
-
-    if (!('stage' in c?.props)) return null;
-    return c.props.stage === stage ? renderChild(c, injectProps) : null;
+    return renderChild(c, injectProps, stage);
   }).filter(c => !!c);
 
   return <>{renderedChildren}</>;
