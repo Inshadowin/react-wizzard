@@ -76,7 +76,9 @@ type WizzardStageChildrenProps<T> = {
 {
   // Must contain element based on Component with WizzardStageChildrenProps consumption
   // or render function
+  // or just a Node
   children:
+    | React.ReactNode
     | React.ReactElement<WizzardStageChildrenProps<T>>
     | ((params: WizzardStageChildrenProps<T>) => JSX.Element)
 }

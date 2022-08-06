@@ -6,7 +6,7 @@ import type { WizzardStageChildrenProps } from '../../types';
 export const renderChild = <T>(
   child: React.ReactNode | Function,
   props: WizzardStageChildrenProps<T>,
-  stage: string
+  stage?: string
 ): JSX.Element => {
   if (typeof child === 'function') {
     return child(props);
