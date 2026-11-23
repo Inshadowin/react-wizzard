@@ -4,7 +4,7 @@ on:
     branches: ['**']
   pull_request:
   release:
-    types: [created]
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
           echo "- Tests: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Build completed in the previous step" >> "$GITHUB_STEP_SUMMARY"
       - name: Publish package on NPM
-        if: github.event_name == 'release'
+        if: github.event_name == 'release' && github.event.action == 'published'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
